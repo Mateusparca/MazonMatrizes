@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <title>Jogo do Bicho</title>
+</head>
+
+<body>
+    <nav id="menu">
+        <ul>
+            <li><a href="../index.html">XD</a></li>
+            <li><a href="../servicosdafirma.html">Serviços</a></li>
+            <li><a href="#">Entrar</a></li>
+            <li><a href="#">Sobre</a></li>
+        </ul>
+    </nav>
+
+
+    <script>
+
+        var linha1 = parseInt(prompt("Quantas linhas terá a primeira matriz?"));
+        var colu1 = parseInt(prompt("Quantas colunas terá a primeira matriz?"));
+        var linha2 = parseInt(prompt("Quantas linhas terá a segunda matriz?"));
+        var colu2 = parseInt(prompt("Quantas colunas terá a segunda matriz?"));
+
+
+        if (colu1 == colu2 && linha1 == linha2) {
+            var matriz1 = new Array(linha1, colu1);
+            var matriz2 = new Array(linha2, colu2);
+
+            for (var i = 0; i < linha1; i++) {
+                matriz1[i] = []
+                for (var j = 0; j < colu1; j++) {
+                    matriz1[i][j] = (parseInt(Math.random() * 10));
+                }
+            }
+
+            for (var i = 0; i < linha2; i++) {
+                matriz2[i] = []
+                for (var j = 0; j < colu2; j++) {
+                    matriz2[i][j] = (parseInt(Math.random() * 10));
+                }
+            }
+
+            var matriztrans1 = new Array(linha1, colu1);
+            var matriztrans2 = new Array(linha2, colu2);
+
+            for (var i = 0; i < linha1; i++) {
+                matriztrans1[i] = []
+                for (var j = 0; j < colu1; j++) {
+                    matriztrans1[i][j] = matriz1[j][i];
+                }
+            }
+
+            for (var i = 0; i < linha2; i++) {
+                matriztrans2[i] = []
+                for (var j = 0; j < colu2; j++) {
+                    matriztrans2[i][j] = matriz2[j][i];
+                }
+            }
+
+            var matrizadicao = new Array(linha1, colu1);
+
+            for (var i = 0; i < linha1; i++) {
+                matrizadicao[i] = []
+                for (var j = 0; j < colu2; j++) {
+                    matrizadicao[i][j] = matriz1[i][j] + matriz2[i][j];
+                }
+            }
+
+            var matrizsub = new Array(linha1, colu1);
+
+            for (var i = 0; i < linha1; i++) {
+                matrizsub[i] = []
+                for (var j = 0; j < colu2; j++) {
+                    matrizsub[i][j] = matriz1[i][j] - matriz2[i][j];
+                }
+            }
+
+
+            var table1 = "<table>";
+
+            for (var i = 0; i < linha1; i++) {
+                table1 += "<tr>";
+                for (var j = 0; j < colu2; j++) {
+                    table1 += "<td>" + matriz1[i][j] + "</td>";
+                }
+                table1 += "</tr>";
+            }
+            table1 += "</table>";
+
+            var table2 = "<table>";
+
+            for (var i = 0; i < linha1; i++) {
+                table2 += "<tr>";
+                for (var j = 0; j < colu2; j++) {
+                    table2 += "<td>" + matriz2[i][j] + "</td>";
+                }
+                table2 += "</tr>";
+            }
+            table2 += "</table>";
+
+
+            var tablesub = "<table>";
+
+            for (var i = 0; i < linha1; i++) {
+                tablesub += "<tr>";
+                for (var j = 0; j < colu2; j++) {
+                    tablesub += "<td>" + matrizsub[i][j] + "</td>";
+                }
+                tablesub += "</tr>";
+            }
+            tablesub += "</table>";
+
+
+            var tableadi = "<table>";
+
+            for (var i = 0; i < linha1; i++) {
+                tableadi += "<tr>";
+                for (var j = 0; j < colu2; j++) {
+                    tableadi += "<td>" + matrizadicao[i][j] + "</td>";
+                }
+                tableadi += "</tr>";
+            }
+
+            tableadi += "</table>";
+
+            var tabletrans1 = "<table>";
+
+            for (var i = 0; i < linha1; i++) {
+                tabletrans1 += "<tr>";
+                for (var j = 0; j < colu1; j++) {
+                    tabletrans1 += "<td>" + matriztrans1[i][j] + "</td>";
+                }
+                tabletrans1 += "</tr>";
+            }
+            tabletrans1 += "</table>";
+
+            var tabletrans2 = "<table>";
+
+            for (var i = 0; i < linha2; i++) {
+                tabletrans2 += "<tr>";
+                for (var j = 0; j < colu2; j++) {
+                    tabletrans2 += "<td>" + matriztrans2[i][j] + "</td>";
+                }
+                tabletrans2 += "</tr>";
+            }
+            tabletrans2 += "</table>";
+
+        } else {
+            alert("Não é possivel soma e subtrair, tamanhos invalidos")
+        }
+
+        if (colu1 == linha2) {
+            var matrizmulti = new Array(linha1, colu2);
+
+            for (var i = 0; i < linha1; i++) {
+                matrizmulti[i] = []
+                for (var j = 0; j < colu2; j++) {
+                    let multi = 0;
+                    for (var k = 0; k < linha1; k++) {
+                        multi += matriz1[i][k] * matriz2[k][j];
+                    }
+                    matrizmulti[i][j] = multi;
+                }
+            }
+
+            var tablemulti = "<table>";
+
+            for (var i = 0; i < linha1; i++) {
+                tableadi += "<tr>";
+                for (var j = 0; j < colu2; j++) {
+                    tablemulti += "<td>" + matrizmulti[i][j] + "</td>";
+                }
+                tablemulti += "</tr>";
+            }
+            tablemulti += "</table>";
+        } else {
+            alert("Não é possivel multiplicar, tamanhos invalidos")
+        }
+
+
+
+        document.write("<h1> Primeira tabela</h1>");
+        document.write(table1);
+
+        document.write("<h1> Segunda tabela</h1>");
+        document.write(table2);
+
+        document.write("<h1> Adição</h1>");
+        document.write(tableadi);
+
+        document.write("<h1> Subtração</h1>");
+        document.write(tablesub);
+
+        document.write("<h1> Multiplicação</h1>");
+        document.write(tablemulti);
+
+        document.write("<h1> Transposição primeira tabela</h1>");
+        document.write(tabletrans1);
+
+        document.write("<h1> Transposição segunda tabela</h1>");
+        document.write(tabletrans2 + "<br> <Br>");
+
+        console.table(matriz1);
+        console.table(matriz2);
+        console.table(matrizadicao);
+        console.table(matrizsub);
+        console.table(matrizmulti);
+        console.table(matriztrans1);
+        console.table(matriztrans2);
+
+
+
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>
